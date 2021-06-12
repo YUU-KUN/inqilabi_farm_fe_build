@@ -4,7 +4,7 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
-import BootstrapVue from 'bootstrap-vue'
+import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import App from './App.vue'
 //load CSS
 import '../public/css/materialdesignicons.min.css'
@@ -18,6 +18,7 @@ import '../public/js/vendor.bundle.base.js'
 import '../public/js/polyfill.min.js'
 
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
