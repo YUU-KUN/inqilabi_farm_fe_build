@@ -22,7 +22,9 @@
                                     <div>
                                         <h5><b>Kambing / Domba <span class="text-danger">Super</span></b></h5>
                                         <h4><b>Rp 4.000.000</b></h4>
-                                        <b-button pill variant="danger"><b>Kurban Sekarang</b></b-button>
+                                        <router-link to="/checkout">
+                                            <b-button pill variant="danger"><b>Kurban Sekarang</b></b-button>
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>
