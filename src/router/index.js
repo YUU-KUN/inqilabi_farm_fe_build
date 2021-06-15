@@ -18,13 +18,12 @@ import ConfirmCheckout from '../views/ConfirmCheckout.vue'
 import UploadBukti from '../views/UploadBukti.vue'
 import Pembayaran from '../views/Pembayaran.vue'
 import Report from '../views/Report.vue'
+import ReportAdmin from '../views/Report Admin.vue'
+import ReportDetail from '../views/Report Detail.vue'
+import ReportCreate from '../views/Report Create.vue'
 
+import Dashboard from '../views/Dashboard.vue'
 import Home from '../views/Home.vue'
-import Petugas from '../views/Petugas.vue'
-import Siswa from '../views/Siswa.vue'
-import Pelanggaran from '../views/Pelanggaran.vue'
-import InputPelanggaran from '../views/InputPelanggaran.vue'
-import Poin from '../views/Poin.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +37,42 @@ const routes = [
     path: '/register',
     name: 'register',
     components: {default: Register, header: Header, footer: Footer}
+  },
+  {
+    path: '/',
+    name: 'Dashboard',
+    components: {default: Dashboard, header: Header, footer: Footer},
+    meta: {
+      title: "Dashboard",
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reportCreate',
+    name: 'Report Create',
+    components: {default: ReportCreate, header: Header, footer: Footer},
+    meta: {
+      title: "Report Create",
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reportDetail',
+    name: 'Report Detail',
+    components: {default: ReportDetail, header: Header, footer: Footer},
+    meta: {
+      title: "Report Detail",
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reportAdmin',
+    name: 'Report Admin',
+    components: {default: ReportAdmin, header: Header, footer: Footer},
+    meta: {
+      title: "Report Admin",
+      requiresAuth: true
+    }
   },
   {
     path: '/report',
@@ -121,51 +156,11 @@ const routes = [
     }
   },
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     components: {default: Home, header: Navbar, footer: Footer},
     meta: {
       title: "Home",
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/petugas',
-    name: 'petugas',
-    components: {default: Petugas, header: Navbar, footer: Footer},
-    meta: { 
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/siswa',
-    name: 'siswa',
-    components: {default: Siswa, header: Navbar, footer: Footer},
-    meta: { 
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/pelanggaran',
-    name: 'pelanggaran',
-    components: {default: Pelanggaran, header: Navbar, footer: Footer},
-    meta: { 
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/input_pelanggaran',
-    name: 'input_pelanggaran',
-    components: {default: InputPelanggaran, header: Navbar, footer: Footer},
-    meta: { 
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/poin',
-    name: 'poin',
-    components: {default: Poin, header: Navbar, footer: Footer},
-    meta: { 
       requiresAuth: true
     }
   }
