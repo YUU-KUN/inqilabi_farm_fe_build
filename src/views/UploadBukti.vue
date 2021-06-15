@@ -10,7 +10,7 @@
                     <div class="subtitle">...or click to select a file from your computer</div> -->
                 </div>
             </vue-dropzone>
-            <div v-if="uploaded">
+            <div class="justify-content-center" v-if="uploaded">
                 <h4>Terimakasih, Kami akan mengkonfirmasi pembayaran Anda</h4>
                 <h4>Silahkan kembali ke dashboard</h4>
             </div>
@@ -36,7 +36,7 @@ import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 export default {
     components: {
-    vueDropzone: vue2Dropzone
+      vueDropzone: vue2Dropzone
   },
   data() {
     return {

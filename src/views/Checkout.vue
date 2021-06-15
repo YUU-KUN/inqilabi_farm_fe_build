@@ -70,7 +70,7 @@
 <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
 <pre> hasilnya {{button}}</pre> -->
 
-    <div class="row d-flex justify-content-center" style="margin: 25px">
+    <div class=" d-flex justify-content-center" style="margin: 25px">
         <div>
             <div class="row">
                 <div class="col-3">
