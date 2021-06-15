@@ -38,7 +38,9 @@
                     <h5>Mulai dari</h5>
                     <h3><b>Rp 1.850.000</b></h3>
                     <!-- <p><button>Kurban Sekarang</button></p> -->
-                    <p><b-button pill variant="light">Kurban Sekarang</b-button></p>
+                    <router-link to="paketDombaJantan">
+                        <b-button pill variant="light">Kurban Sekarang</b-button>
+                    </router-link>
                 </div>
                 <!-- Kambing / Domba Jantan -->
                 <div class="card" style="align-items:center;">

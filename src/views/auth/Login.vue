@@ -26,13 +26,21 @@
                         </b-button> -->
                     </form>
                     <br>
-                    <b-button
+                    <router-link to="/">
+                      <b-button
+                          variant="primary"
+                          lg="4"
+                          type="button"
+                          >Lanjutkan
+                      </b-button>
+                    </router-link>
+                    <!-- <b-button
                         @click="login"
                         variant="primary"
                         lg="4"
                         type="button"
                         >Lanjutkan
-                    </b-button>
+                    </b-button> -->
                 </div>
               </div>
             </div>

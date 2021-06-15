@@ -59,14 +59,23 @@
                                 type="button"
                                 >Lanjutkan
                             </b-button>
-                            <b-button
+                            <router-link to="/">
+                              <b-button
+                                  v-if="next"
+                                  variant="primary"
+                                  lg="4"
+                                  type="button"
+                                  >Daftar
+                              </b-button>
+                            </router-link>
+                            <!-- <b-button
                                 @click="register"
                                 v-if="next"
                                 variant="primary"
                                 lg="4"
                                 type="button"
                                 >Daftar
-                            </b-button>
+                            </b-button> -->
                     </div>
                   </div>
                 </div>
@@ -116,6 +125,7 @@ export default {
         nextStep() {
           if (!this.name || !this.email || !this.password || !this.confirm_password) {
             this.next = false
+            alert('Mohon lengkapi formnya')
             console.log('Mohon lengkapi formnya');
           } else {
             this.next = true

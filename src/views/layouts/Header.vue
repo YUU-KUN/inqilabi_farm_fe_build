@@ -33,13 +33,22 @@
           <!-- <router-link to="register" class="nav-link">{{username}}</router-link> -->
 
           <span>
+            <span v-if="!admin">
+              <b-dropdown-item>
+                <router-link style="text-decoration: none; color: black" to="report">
+                  Kurban Anda
+                </router-link>
+              </b-dropdown-item>
+            </span>
+            <span v-else>
+              <b-dropdown-item>
+                <router-link style="text-decoration: none; color: black" to="reportAdmin">
+                  Laporan Kurban
+                </router-link>
+              </b-dropdown-item>
+            </span>
             <b-dropdown-item>
-              <router-link style="text-decoration: none; color: black" to=""
-                >Kurban Anda</router-link
-              >
-            </b-dropdown-item>
-            <b-dropdown-item>
-              <router-link style="text-decoration: none; color: black" to="checkout"
+              <router-link style="text-decoration: none; color: black" to="pembayaran"
                 >Pembayaran</router-link
               >
             </b-dropdown-item>
@@ -63,9 +72,11 @@
                 Profil anda belum lengkap
               </b-dropdown-text>
             </div>
-            <b-button variant="warning" type="button" block
-              >Lengkapi Profile
-            </b-button>
+            <router-link to="profileCompletion">
+              <b-button variant="warning" type="button" block
+                >Lengkapi Profile
+              </b-button>
+            </router-link>
           </span>
         </b-dropdown>
       </li>
@@ -75,6 +86,11 @@
 
 <script>
 export default {
+  data() {
+    return  {
+      admin: true
+    }
+  },
   methods: {
     logout() {
       this.$store
