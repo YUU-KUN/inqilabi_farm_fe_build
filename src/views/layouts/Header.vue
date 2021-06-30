@@ -4,22 +4,24 @@
     class="navbar justify-content-between"
     style="padding: 0 100px"
   >
-    <img class="navbar-brand" src="../../../public/img/logo.png" alt="logo" />
+    <router-link to="/">
+      <img class="navbar-brand" src="../../../public/img/logo.png" alt="logo" />
+    </router-link>
 
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
+    <ul class="nav">
+      <li v-if="isLoggedIn" class="nav-item">
         <router-link to="/" class="nav-link text-dark">Dashboard</router-link>
       </li>
-      <li class="nav-item">
-        <router-link to="choosePackage" class="nav-link text-dark">Paket Kurban</router-link>
+      <li v-if="isLoggedIn" class="nav-item">
+        <router-link to="/choosePackage" class="nav-link text-dark">Paket Kurban</router-link>
       </li>
       <li v-if="!isLoggedIn" class="nav-item">
-        <router-link to="login" class="nav-link text-dark">Login</router-link>
+        <router-link to="/login" class="nav-link text-dark">Login</router-link>
       </li>
       <li v-if="!isLoggedIn" class="nav-item">
-        <router-link to="register" class="nav-link text-dark">Register</router-link>
+        <router-link to="/register" class="nav-link text-dark">Register</router-link>
       </li>
-      <li v-if="!isLoggedIn" class="nav-item">
+      <li v-if="isLoggedIn" class="nav-item">
         <b-dropdown
           size="lg"
           variant="link"
@@ -28,41 +30,34 @@
         >
           <template #button-content>
             <b-avatar size="sm"></b-avatar>
-            Transbara
+            {{userDetail.name}}
           </template>
-          <!-- <router-link to="register" class="nav-link">{{username}}</router-link> -->
+          <!-- <router-link to="register" class="nav-link">{{userDetail}}</router-link> -->
 
           <span>
-            <span v-if="!admin">
+            <span>
               <b-dropdown-item>
-                <router-link style="text-decoration: none; color: black" to="report">
+                <router-link style="text-decoration: none; color: black" to="/kurbanSaya">
                   Kurban Anda
                 </router-link>
               </b-dropdown-item>
             </span>
-            <span v-else>
-              <b-dropdown-item>
-                <router-link style="text-decoration: none; color: black" to="reportAdmin">
-                  Laporan Kurban
-                </router-link>
-              </b-dropdown-item>
-            </span>
             <b-dropdown-item>
-              <router-link style="text-decoration: none; color: black" to="pembayaran"
+              <router-link style="text-decoration: none; color: black" to="/pembayaran"
                 >Pembayaran</router-link
               >
             </b-dropdown-item>
             <b-dropdown-item>
-              <router-link style="text-decoration: none; color: black" to=""
+              <router-link style="text-decoration: none; color: black" to="/profileCompletion"
                 >Profile</router-link
               >
             </b-dropdown-item>
-            <b-dropdown-item>
-              <span @click="logout">Keluar</span>
+            <b-dropdown-item @click="logout">
+              <span >Keluar</span>
             </b-dropdown-item>
           </span>
 
-          <span style="text-align:center">
+          <span style="text-align:center" v-if="!userDetail.alamat || !userDetail.kecamatan || !userDetail.kota || !userDetail.provinsi">
             <div class="col">
               <b-icon icon="exclamation-triangle" variant="danger"></b-icon>
               <!-- &#x1f50d;<span class="sr-only">Search</span> -->
@@ -97,6 +92,7 @@ export default {
         .dispatch("logout")
         .then((response) => {
           console.log(response);
+          this.$router.push('/login')
         })
         .catch((error) => {
           console.log(error.response);
@@ -104,13 +100,20 @@ export default {
     },
   },
   computed: {
-    username() {
-      return this.$store.getters.userDetail.name;
+    userDetail() {
+      return this.$store.getters.userDetail;
     },
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
     },
   },
+  mounted() {
+    if (this.$store.getters.userDetail.level == 'user') {
+      this.admin = false
+    } else {
+      this.admin = true
+    }
+  }
 };
 </script>
 
