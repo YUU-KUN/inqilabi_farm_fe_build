@@ -2,13 +2,13 @@
   <div style="justify-content:center; margin:50px auto; padding: 0 100px; background-color: white">
     <h2 v-if="!uploaded"><b>Upload Bukti Transfer</b></h2> 
       <div class="text-center" style="margin: 50px auto; padding: 0 100px">
-        <div class="row align-items-center my-4">
-            <vue-dropzone v-if="!uploaded" ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" useCustomSlot>
-                <div class="dropzone-custom-content" >
-                    <img src="../../public/img/entypo_upload-to-cloud.svg" alt="Cloud Upload Icon" height="75px">
+        <div class="align-items-center my-4">
+            <vue-dropzone v-if="!uploaded" ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" useCustomSlot style="height:300px; ">
+                <!-- <div class="dropzone-custom-content" style="margin-bottom:20px"> -->
+                    <img src="../../public/img/entypo_upload-to-cloud.svg" alt="Cloud Upload Icon" height="175px">
                     <!-- <h3 class="dropzone-custom-title">Drag and drop to upload content!</h3>
                     <div class="subtitle">...or click to select a file from your computer</div> -->
-                </div>
+                <!-- </div> -->
             </vue-dropzone>
             <div class="justify-content-center" v-if="uploaded">
                 <h4>Terimakasih, Kami akan mengkonfirmasi pembayaran Anda</h4>
@@ -43,7 +43,11 @@ export default {
         uploaded: false,
         dropzoneOptions: {
           url: 'https://httpbin.org/post',
-          thumbnailWidth: 150,
+          // thumbnailWidth: 'auto',
+          // thumbnailHeight: 'auto',
+          // thumbnailHeight: 150,
+          // thumbnailWidth: 150,
+          // thumbnailWidth: 120,
           maxFilesize: 0.5,
           headers: { "My-Awesome-Header": "header value" }
       }
