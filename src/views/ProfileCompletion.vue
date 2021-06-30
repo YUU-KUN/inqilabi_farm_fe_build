@@ -11,27 +11,31 @@
                       <br>
                       <form>
                           <b-form-group>
-                            <b-form-input id="nama" v-model="nama" placeholder="Nama" trim required></b-form-input>
+                            <b-form-input id="nama" v-model="profile.name" placeholder="Nama" trim required></b-form-input>
                           </b-form-group>
                           
                           <b-form-group>
-                            <b-form-input id="nomor_wa" v-model="noWa" placeholder="No. Wa" trim required></b-form-input>
+                            <b-form-input id="nomor_wa" v-model="profile.phone" placeholder="No. Wa" trim required></b-form-input>
                           </b-form-group>
 
                           <b-form-group>
-                            <b-form-input id="alamat" v-model="alamat" placeholder="Alamat" trim required></b-form-input>
+                            <b-form-input id="email" v-model="profile.email" placeholder="Email" trim required></b-form-input>
                           </b-form-group>
 
                           <b-form-group>
-                            <b-form-input id="kecamatan" v-model="kecamatan" placeholder="Kecamatan" trim required></b-form-input>
+                            <b-form-input id="alamat" v-model="profile.alamat" placeholder="Alamat" trim required></b-form-input>
+                          </b-form-group>
+
+                          <b-form-group>
+                            <b-form-input id="kecamatan" v-model="profile.kecamatan" placeholder="Kecamatan" trim required></b-form-input>
                           </b-form-group>
                           
                           <b-form-group>
-                            <b-form-input id="kota" v-model="kota" placeholder="Kota" trim required></b-form-input>
+                            <b-form-input id="kota" v-model="profile.kota" placeholder="Kota" trim required></b-form-input>
                           </b-form-group>
 
                           <b-form-group>
-                            <b-form-input id="provinsi" v-model="provinsi" placeholder="Provinsi" trim required></b-form-input>
+                            <b-form-input id="provinsi" v-model="profile.provinsi" placeholder="Provinsi" trim required></b-form-input>
                           </b-form-group>
                         </form>
                         <br>
@@ -63,35 +67,40 @@
 export default {
     data() {
       return {
-        nama: '',
-        noWa: '',
-        alamat: '',
-        kecamatan: '',
-        kota: '',
-        provinsi: '',
+        profile: '',
         message: '',
       }
     },
     methods: {
-        profileCompletion(){
-            this.$bvToast.show("loadingToast")
-            const form = {
-              nama: this.nama,
-              noWa: this.noWa,
-              alamat: this.alamat,
-              kecamatan: this.kecamatan,
-              kota: this.kota,
-              provinsi: this.provinsi
-            }
-            this.axios.post('')
-            .then((response) => {
-                this.message = response.data.message
-                this.$bvToast.hide("loadingToast")
-                this.$bvToast.show("message")
-                this.$router.push('/')
-            })
-            .catch(err => console.log(err))
-        },
+      getProfile() {
+        this.axios.get('profile').then(response => {
+          this.profile = response.data.user
+          console.log(response.data.message);
+        }).catch(error => console.log(error))
+      },
+      profileCompletion(){
+          this.$bvToast.show("loadingToast")
+          const form = {
+            name: this.profile.name,
+            phone: this.profile.phone,
+            email: this.profile.email,
+            alamat: this.profile.alamat,
+            kecamatan: this.profile.kecamatan,
+            kota: this.profile.kota,
+            provinsi: this.profile.provinsi
+          }
+          this.axios.post('profileCompletion', form)
+          .then((response) => {
+              this.message = response.data.message
+              this.$bvToast.hide("loadingToast")
+              this.$bvToast.show("message")
+              this.$router.push('/')
+          })
+          .catch(err => console.log(err.response))
+      },
     },
+    mounted() {
+      this.getProfile()
+    }
 }
 </script>
