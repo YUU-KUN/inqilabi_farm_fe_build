@@ -1,34 +1,35 @@
 <template>
   <div style="justify-content:center; margin:50px auto; padding: 0 100px; background-color: white">
       <div class="text-center" style="margin: 50px auto; padding: 0 100px">
-        <div class="row align-items-center my-4">
-          <div class="col">
-
-    <h2><b>Detail Laporan</b></h2> 
+        <div class="align-items-center my-4">
+          <div class="col mb-5">
+            <h2><b>Detail Laporan</b></h2> 
           </div>
-          <!-- Foto Hewan Kurban Anda -->
-          <div class="col">
-            <input type="radio" class="btn-check" name="options-outlined" id="foto-hewan-kurban" value="foto-hewan-kurban" v-model="currentPage" autocomplete="off" checked>
-            <label class="btn btn-danger font-weight-bold text-light px-4" for="foto-hewan-kurban">
-              <span class="d-flex justify-content-center">Foto Hewan</span> 
-              <span class="d-flex justify-content-center">Kurban Anda</span>
-            </label>
-          </div>
-          <!-- Foto Proses Penyembelihan -->
-          <div class="col">
-            <input type="radio" class="btn-check" name="options-outlined" id="foto-proses-penyembelihan" value="foto-proses-penyembelihan" v-model="currentPage" autocomplete="off">
-            <label class="btn btn-warning font-weight-bold text-light px-4" for="foto-proses-penyembelihan">
-              <span class="d-flex justify-content-center">Foto Proses</span> 
-              <span class="d-flex justify-content-center">Penyembelihan</span>
-            </label>
-          </div>
-          <!-- Foto Pembagian Kurban -->
-          <div class="col">
-            <input type="radio" class="btn-check" name="options-outlined" id="foto-pembagian-kurban" value="foto-pembagian-kurban" v-model="currentPage" autocomplete="off">
-            <label class="btn btn-warning font-weight-bold text-light px-4" for="foto-pembagian-kurban">
-              <span class="d-flex justify-content-center">Foto Pembagian</span> 
-              <span class="d-flex justify-content-center">Kurban</span>
-            </label>
+          <div class="d-flex align-items-center">
+            <!-- Foto Hewan Kurban Anda -->
+            <div class="col">
+              <input type="radio" class="btn-check" name="options-outlined" id="foto-hewan-kurban" value="foto-hewan-kurban" v-model="currentPage" autocomplete="off" checked>
+              <label class="btn btn-danger font-weight-bold text-light px-4" for="foto-hewan-kurban">
+                <span class="d-flex justify-content-center">Foto Hewan</span> 
+                <span class="d-flex justify-content-center">Kurban Anda</span>
+              </label>
+            </div>
+            <!-- Foto Proses Penyembelihan -->
+            <div class="col">
+              <input type="radio" class="btn-check" name="options-outlined" id="foto-proses-penyembelihan" value="foto-proses-penyembelihan" v-model="currentPage" autocomplete="off">
+              <label class="btn btn-warning font-weight-bold text-light px-4" for="foto-proses-penyembelihan">
+                <span class="d-flex justify-content-center">Foto Proses</span> 
+                <span class="d-flex justify-content-center">Penyembelihan</span>
+              </label>
+            </div>
+            <!-- Foto Pembagian Kurban -->
+            <div class="col">
+              <input type="radio" class="btn-check" name="options-outlined" id="foto-pembagian-kurban" value="foto-pembagian-kurban" v-model="currentPage" autocomplete="off">
+              <label class="btn btn-warning font-weight-bold text-light px-4" for="foto-pembagian-kurban">
+                <span class="d-flex justify-content-center">Foto Pembagian</span> 
+                <span class="d-flex justify-content-center">Kurban</span>
+              </label>
+            </div>
           </div>
           <div class="card my-4">
             <div class="d-flex justify-content-center my-5">

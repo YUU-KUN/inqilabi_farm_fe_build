@@ -2,7 +2,7 @@
   <div style="justify-content:center; margin:50px auto; padding: 0 100px; background-color: white">
     <h2><b>Detail Proses Laporan</b></h2> 
       <div class="text-center" style="margin: 50px auto; padding: 0 100px">
-        <div class="row align-items-center my-4">
+        <div class="align-items-center my-4">
           <div class="card mb-4" v-if="foto_hewan">
             <table>
               <div class="text-center" style="margin: 50px auto;">
@@ -41,7 +41,7 @@
                         <h5>25 Kg</h5>
                     </div>
                     <div class="col">
-                      <img src="../../public/img/patugan_sapi.svg" alt="Foto Hewan Kurban" width="100px">
+                      <img src="../../public/img/patungan_sapi.svg" alt="Foto Hewan Kurban" width="100px">
                     </div>
                     <div class="col">
                       <button class="btn btn-danger text-light font-weight-bold mx-1">Edit</button>
@@ -91,7 +91,7 @@
                         <h5>10:00 WIB</h5>
                     </div>
                     <div class="col">
-                      <img src="../../public/img/patugan_sapi.svg" alt="Foto Hewan Kurban" width="100px">
+                      <img src="../../public/img/patungan_sapi.svg" alt="Foto Hewan Kurban" width="100px">
                     </div>
                     <div class="col">
                       <button class="btn btn-danger text-light font-weight-bold mx-1">Edit</button>
@@ -141,7 +141,7 @@
                         <h5>Senin, 13 Juni 2021</h5>
                     </div>
                     <div class="col">
-                      <img src="../../public/img/patugan_sapi.svg" alt="Foto Hewan Kurban" width="100px">
+                      <img src="../../public/img/patungan_sapi.svg" alt="Foto Hewan Kurban" width="100px">
                     </div>
                     <div class="col">
                       <button class="btn btn-danger text-light font-weight-bold mx-1">Edit</button>

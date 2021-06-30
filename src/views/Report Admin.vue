@@ -2,7 +2,7 @@
   <div style="justify-content:center; margin:50px auto; padding: 0 100px; background-color: white">
     <h2><b>Laporan</b></h2> 
       <div class="text-center" style="margin: 50px auto; padding: 0 100px">
-        <div class="row align-items-center my-4">
+        <div class="align-items-center my-4">
           <div class="card">
             <table>
               <div class="text-center" style="margin: 50px auto; ">
