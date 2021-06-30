@@ -14,7 +14,7 @@
                       </b-form-group>
                       
                       <b-form-group>
-                        <b-form-input id="password" v-model="password" placeholder="Password" trim required></b-form-input>
+                        <b-form-input type="password" id="password" v-model="password" placeholder="Password" trim required></b-form-input>
                       </b-form-group>
 
 
@@ -26,21 +26,21 @@
                         </b-button> -->
                     </form>
                     <br>
-                    <router-link to="/">
+                    <!-- <router-link to="/">
                       <b-button
                           variant="primary"
                           lg="4"
                           type="button"
                           >Lanjutkan
                       </b-button>
-                    </router-link>
-                    <!-- <b-button
+                    </router-link> -->
+                    <b-button
                         @click="login"
                         variant="primary"
                         lg="4"
                         type="button"
                         >Lanjutkan
-                    </b-button> -->
+                    </b-button>
                 </div>
               </div>
             </div>
@@ -69,19 +69,17 @@ export default {
     },
     methods: {
         login(){
-            this.$bvToast.show("loadingToast")
-            const form = {
-              emailOrPhone: this.emailOrPhone,
-              password: this.password
-            }
-            this.$store.dispatch('login', { emailOrPhone, password })
-            .then((response) => {
-                this.message = response.data.message
-                this.$bvToast.hide("loadingToast")
-                this.$bvToast.show("message")
-                this.$router.push('/')
-            })
-            .catch(err => console.log(err))
+          this.$bvToast.show("loadingToast")
+          let emailOrPhone = this.emailOrPhone
+          let password = this.password
+          this.$store.dispatch('login', {emailOrPhone, password})
+          .then((response) => {
+              this.message = response.data.message
+              this.$bvToast.hide("loadingToast")
+              this.$bvToast.show("message")
+              this.$router.push('/')
+          })
+          .catch(err => console.log(err.response))
         },
     },
 }

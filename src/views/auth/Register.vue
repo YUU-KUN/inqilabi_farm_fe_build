@@ -28,7 +28,7 @@
                             </b-form-group>
 
                             <b-form-group>
-                              <b-form-input id="confirm_password" v-model="confirm_password" placeholder="Konfirmasi Password" trim required></b-form-input>
+                              <b-form-input id="password_confirmation" v-model="password_confirmation" placeholder="Konfirmasi Password" trim required></b-form-input>
                             </b-form-group>
 
                         </div>
@@ -37,7 +37,7 @@
                               <b-form-input id="phone" v-model="phone" placeholder="No. Handphone (Whatsapp)" required></b-form-input>
                             </b-form-group>
 
-                            <b-form-checkbox v-model="checked">Kami akan memberikan laporan secara berkala kepada Anda</b-form-checkbox>
+                            <b-form-checkbox v-model="isAgree">Kami akan memberikan laporan secara berkala kepada Anda</b-form-checkbox>
 
                         </div>
 
@@ -59,7 +59,7 @@
                                 type="button"
                                 >Lanjutkan
                             </b-button>
-                            <router-link to="/">
+                            <!-- <router-link to="/">
                               <b-button
                                   v-if="next"
                                   variant="primary"
@@ -67,15 +67,15 @@
                                   type="button"
                                   >Daftar
                               </b-button>
-                            </router-link>
-                            <!-- <b-button
-                                @click="register"
+                            </router-link> -->
+                            <b-button
                                 v-if="next"
+                                @click="register"
                                 variant="primary"
                                 lg="4"
                                 type="button"
                                 >Daftar
-                            </b-button> -->
+                            </b-button>
                     </div>
                   </div>
                 </div>
@@ -101,32 +101,19 @@ export default {
         name: '',
         email: '',
         password: '',
-        confirm_password: '',
+        password_confirmation: '',
         phone: '',
         next: false,
-        checked: false,
+        isAgree: false,
         message: '',
       }
     },
     methods: {
-        // Login: function(){
-        //     this.$bvToast.show("loadingToast")
-        //     let email = this.email 
-        //     let password = this.password
-        //     this.$store.dispatch('login', { email, password })
-        //     .then((response) => {
-        //         this.message = response.data.message
-        //         this.$bvToast.hide("loadingToast")
-        //         this.$bvToast.show("message")
-        //         this.$router.push('/')
-        //     })
-        //     .catch(err => console.log(err))
-        // },
         nextStep() {
-          if (!this.name || !this.email || !this.password || !this.confirm_password) {
+          if (!this.name || !this.email || !this.password || !this.password_confirmation) {
             this.next = false
             alert('Mohon lengkapi formnya')
-            console.log('Mohon lengkapi formnya');
+            // console.log('Mohon lengkapi formnya');
           } else {
             this.next = true
           }
@@ -137,11 +124,13 @@ export default {
             name: this.name,
             email: this.email,
             password: this.password,
-            confirm_password: this.confirm_password,
+            password_confirmation: this.password_confirmation,
             phone: this.phone,
+            isAgree: this.isAgree,
           }
-          this.axios.post('register', form).then(response => {
-            console.log(response);
+          this.axios.post('register_user', form).then(response => {
+            console.log(response.data.message);
+            this.$router.push('/login')
           }).catch(error => {
             console.log(error.response);
           })

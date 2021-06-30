@@ -34,15 +34,16 @@ export default new Vuex.Store({
 	  	login({commit}, user){
 	        return new Promise((resolve, reject) => {
 	            commit('auth_request')
-	            axios({url: '/login', data: user, method: 'POST' })
+	            // axios({url: 'login_user', data: user, method: 'POST' })
+				axios.post('/login_user', user)
 	            .then(response => {
-	                const token = response.data.token
+	                const token = response.data.user.access_token
 	                localStorage.setItem('Authorization', token)
-	                axios.defaults.headers.common['Authorization'] = token
+	                axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('Authorization')
 					commit('auth_success', token)
 					//get detail user
 					let conf = { headers : {"Authorization" : "Bearer " + token} };
-					axios.get("/login/check", conf)
+					axios.get("/profile", conf)
 					.then(response => {
 						//simpan detail login ke state
 						commit('userDetail', response.data.user)
@@ -50,6 +51,7 @@ export default new Vuex.Store({
 	                resolve(response)
 	            })
 	            .catch(err => {
+					console.log(err.response);
 	                commit('auth_error')
 	                localStorage.removeItem('Authorization')
 	                reject(err)
