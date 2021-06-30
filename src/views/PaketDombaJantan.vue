@@ -8,7 +8,31 @@
             <br>
             <br>
             <div class="row justify-content-center align-content-around flex-wrap">
-                <div class="col-6" style="margin: 20px auto">
+                <div class="col-6" style="margin: 20px auto" v-for="paket in packages" :key="paket.id">
+                    <div class="d-flex justify-content-center">
+                        <div class="card" style="padding: 0 10px;">
+                            <div class="row">
+                                <div class="col d-flex align-items-center justify-content-end" style="padding: 0">
+                                    <div class="d-flex flex-column" >
+                                        <img src="../../public/img/domba_jantan.png" alt="" width="150px">
+                                        <p>Berat: <b>{{paket.berat}} Kg</b></p>
+                                    </div>
+                                </div>
+                                <div class="col d-flex align-items-center justify-content-center" >
+                                    <div>
+                                        <h5><b>{{paket.nama}} <span class="text-danger">{{paket.variant}}</span></b></h5>
+                                        <h4><b>Rp {{paket.harga}}</b></h4>
+                                        <!-- <router-link to="/checkout">
+                                            <b-button pill variant="danger"><b>Kurban Sekarang</b></b-button>
+                                        </router-link> -->
+                                        <b-button pill variant="danger" @click="checkout(paket.id)"><b>Kurban Sekarang</b></b-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-6" style="margin: 20px auto">
                     <div class="d-flex justify-content-center">
                         <div class="card" style="padding: 0 10px;">
                             <div class="row">
@@ -93,7 +117,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -104,8 +128,25 @@
 export default {
   data() {
     return {
+        packages: []
     };
   },
+  methods: {
+    getPackages() {
+        this.axios.post('package/kambing_jantan').then(response => {
+            console.log(response);
+            this.packages = response.data
+        }).catch(error => {
+            console.log(error.response);
+        })
+    },
+    checkout(id) {
+        this.$router.push({name:'Checkout', params: {id:1 }})
+    }
+  },
+  mounted() {
+    this.getPackages()
+  }
 };
 </script>
 
