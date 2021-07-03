@@ -9,25 +9,37 @@ import Register from '../views/auth/Register.vue'
 import Header from '../views/layouts/Header.vue'
 import Footer from '../views/layouts/Footer.vue'
 
+// import PaketDombaJantan from '../views/PaketDombaJantan.vue'
+// import PaketPatunganSapi from '../views/PaketPatunganSapi.vue'
+// import UploadBukti from '../views/UploadBukti.vue'
+// import ConfirmCheckout from '../views/ConfirmCheckout.vue'
+
+// import ReportAdmin from '../views/Report Admin.vue'
+// import ReportDetail from '../views/Report Detail.vue'
+// import ReportCreate from '../views/Report Create.vue'
+
+import Dashboard from '../views/Dashboard.vue'
+import Home from '../views/Home.vue'
+
+// USER
+import Pembayaran from '../views/Pembayaran.vue'
+import Report from '../views/Report.vue'
+import KurbanSaya from '../views/Kurban Saya.vue'
+import Checkout from '../views/Checkout.vue'
 import ProfileCompletion from '../views/ProfileCompletion.vue'
 import ChooseMorePackage from '../views/ChooseMorePackage.vue'
 import ChoosePackage from '../views/ChoosePackage.vue'
 import TransactionSuccess from '../views/TransactionSuccess.vue'
-// import PaketDombaJantan from '../views/PaketDombaJantan.vue'
-// import PaketPatunganSapi from '../views/PaketPatunganSapi.vue'
-// import UploadBukti from '../views/UploadBukti.vue'
-import Checkout from '../views/Checkout.vue'
-// import ConfirmCheckout from '../views/ConfirmCheckout.vue'
-import Pembayaran from '../views/Pembayaran.vue'
-import Report from '../views/Report.vue'
-import KurbanSaya from '../views/Kurban Saya.vue'
 
-import ReportAdmin from '../views/Report Admin.vue'
-import ReportDetail from '../views/Report Detail.vue'
-import ReportCreate from '../views/Report Create.vue'
-
-import Dashboard from '../views/Dashboard.vue'
-import Home from '../views/Home.vue'
+// ADMIN
+import PembayaranKurban from '../views/admin/Pembayaran.vue'
+import Laporan from '../views/admin/Laporan.vue'
+import LaporanDetail from '../views/admin/Laporan Detail.vue'
+import LaporanCreate from '../views/admin/Laporan Create.vue'
+import LaporanEdit from '../views/admin/Laporan Edit.vue'
+import Pengiriman from '../views/admin/Pengiriman.vue'
+import Sertifikat from '../views/admin/Sertifikat.vue'
+import SertifikatCreate from '../views/admin/Sertifikat Create.vue'
 
 Vue.use(VueRouter)
 
@@ -78,6 +90,66 @@ const routes = [
   //     requiresAuth: true
   //   }
   // },
+
+  // ADMIN
+  {
+    path: '/create/:id',
+    name: 'Create Certificate',
+    components: {default: SertifikatCreate, footer: Footer, header: Header},
+    meta: { 
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/sertifikat',
+    name: 'Sertifikat',
+    components: {default: Sertifikat, footer: Footer, header: Header},
+    meta: { 
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/laporan/pengiriman/:id_pembayaran',
+    name: 'Pengiriman',
+    components: {default: Pengiriman, footer: Footer, header: Header},
+    meta: { 
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/laporan/:id_pembayaran/:id_laporan',
+    name: 'reportEdit',
+    components: {default: LaporanEdit, footer: Footer, header: Header},
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/laporan/create/:id_pembayaran',
+    name: 'reportCreate',
+    components: {default: LaporanCreate, footer: Footer, header: Header},
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/laporan/:id_pembayaran',
+    name: 'reportDetail',
+    components: {default: LaporanDetail, footer: Footer, header: Header},
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/laporan',
+    name: 'Laporan',
+    components: {default: Laporan, footer: Footer, header: Header},
+    meta: {
+      requiresAuth: true
+    }
+  },
+
+  // USER
   {
     path: '/kurbanSaya',
     name: 'Kurban Saya',
@@ -93,6 +165,15 @@ const routes = [
     components: {default: Report, header: Header, footer: Footer},
     meta: {
       title: "Report",
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/pembayaranKurban',
+    name: 'Pembayaran Kurban',
+    components: {default: PembayaranKurban, header: Header, footer: Footer},
+    meta: {
+      title: "Pembayaran Kurban",
       requiresAuth: true
     }
   },
