@@ -2,17 +2,17 @@
   <nav
     id="navbar"
     class="navbar justify-content-between"
-    style="padding: 0 100px"
+    style="padding: 10px 100px"
   >
     <router-link to="/">
-      <img class="navbar-brand" src="../../../public/img/logo.png" alt="logo" />
+      <img class="navbar-brand" src="../../../public/img/logo.svg" height="50px" alt="logo" />
     </router-link>
 
     <ul class="nav">
       <li v-if="isLoggedIn" class="nav-item">
         <router-link to="/" class="nav-link text-dark">Dashboard</router-link>
       </li>
-      <li v-if="isLoggedIn" class="nav-item">
+      <li v-if="isLoggedIn && userDetail.level == 'user'" class="nav-item">
         <router-link to="/choosePackage" class="nav-link text-dark">Paket Kurban</router-link>
       </li>
       <li v-if="!isLoggedIn" class="nav-item">
@@ -35,22 +35,30 @@
           <!-- <router-link to="register" class="nav-link">{{userDetail}}</router-link> -->
 
           <span>
-            <span>
-              <b-dropdown-item>
-                <router-link style="text-decoration: none; color: black" to="/kurbanSaya">
-                  Kurban Anda
-                </router-link>
-              </b-dropdown-item>
-            </span>
-            <b-dropdown-item>
-              <router-link style="text-decoration: none; color: black" to="/pembayaran"
-                >Pembayaran</router-link
-              >
+            <b-dropdown-item v-if="userDetail.level == 'user'">
+              <router-link style="text-decoration: none; color: black" to="/kurbanSaya">
+                Kurban Anda
+              </router-link>
             </b-dropdown-item>
-            <b-dropdown-item>
-              <router-link style="text-decoration: none; color: black" to="/profileCompletion"
-                >Profile</router-link
-              >
+            <b-dropdown-item v-if="userDetail.level == 'user'">
+              <router-link style="text-decoration: none; color: black" to="/pembayaran"
+                >Pembayaran
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item v-if="userDetail.level == 'admin'">
+              <router-link style="text-decoration: none; color: black" to="/pembayaranKurban">
+                Pembayaran Kurban
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item v-if="userDetail.level == 'admin'">
+              <router-link style="text-decoration: none; color: black" to="/laporan">
+                Laporan Kurban
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item v-if="userDetail.level == 'user'">
+              <router-link style="text-decoration: none; color: black" to="/profileCompletion">
+                Profile
+              </router-link>
             </b-dropdown-item>
             <b-dropdown-item @click="logout">
               <span >Keluar</span>
@@ -83,7 +91,7 @@
 export default {
   data() {
     return  {
-      admin: true
+      admin: false
     }
   },
   methods: {
@@ -107,13 +115,13 @@ export default {
       return this.$store.getters.isLoggedIn;
     },
   },
-  mounted() {
-    if (this.$store.getters.userDetail.level == 'user') {
-      this.admin = false
-    } else {
-      this.admin = true
-    }
-  }
+  // mounted() {
+  //   if (this.userDetail.level == 'admin') {
+  //     this.admin = true
+  //   } else {
+  //     this.admin = false
+  //   }
+  // },
 };
 </script>
 
