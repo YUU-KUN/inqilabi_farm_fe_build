@@ -65,6 +65,21 @@
                         <!-- <select name="" id="nama" class="form-control" style="width: 750px">
                             <option value="" selected disabled>Nama</option>
                         </select> -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="mandiri" v-model="mandiri" >
+                            <label for="mandiri">
+                                Isi dengan data diri
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="nama" class="col-form-label"><h5>Didedikasikan Untuk</h5></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" id="dedikasi" class="form-control" v-model="dedikasi" placeholder="Diri Sendiri / Alm. / Almh. / Nama Masjid" style="width: 750px" required>
                     </div>
                 </div>
                 <br>
@@ -237,6 +252,8 @@ export default {
   },
   data() {
     return {
+        dedikasi: '',
+        mandiri: false,
         profile: '',
         packages: '',
         class_option1: 'btn-danger',
@@ -278,7 +295,7 @@ export default {
             })
         },
         confirm() {
-            if (!this.nama) {
+            if (!this.nama || !this.dedikasi) {
                 alert("Mohon lengkapi form")
             } else if (!this.isAgree) {
                 alert('Mohon setujui Syarat & Ketentuan')
@@ -303,6 +320,10 @@ export default {
             // }).catch(error => console.log(error.response))
         },
         upload() {
+            if (!this.bukti_transfer) {
+                alert('Mohon upload bukti pembayaran')
+                return
+            }
             const formData = new FormData()
             formData.append('package_id', this.$route.params.package_id)
             formData.append('nama', this.nama)
@@ -311,6 +332,7 @@ export default {
             formData.append('proses', this.proses)
             formData.append('isAgree', this.isAgree)
             formData.append('bukti_transfer', this.bukti_transfer)
+            formData.append('dedikasi', this.dedikasi)
 
             //Pengiriman
             if (this.proses == 'dikirim') {
@@ -415,6 +437,13 @@ export default {
       },
   },
   watch: {
+      mandiri() {
+        if (this.mandiri) {
+            this.nama = this.profile.name
+        } else {
+            this.nama = ''
+        }
+      },
       fillDefault() {
         if (this.fillDefault) {
             this.fillDefaultData()
