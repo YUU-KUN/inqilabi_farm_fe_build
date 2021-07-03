@@ -10,7 +10,8 @@
                 <!-- Foto Hewan Kurban Anda -->
                 <div class="col">
                   <input type="radio" class="btn-check" name="options-outlined" id="foto_hewan" value="foto_hewan" v-model="proses" autocomplete="off" checked>
-                  <label class="btn btn-danger font-weight-bold text-light px-4" for="foto_hewan">
+                  <!-- <label class="btn btn-danger font-weight-bold text-light px-4" for="foto_hewan"> -->
+                  <label class="btn btn-warning font-weight-bold text-light px-4" for="foto_hewan">
                     <span class="d-flex justify-content-center">Foto Hewan</span> 
                     <span class="d-flex justify-content-center">Kurban Anda</span>
                   </label>
@@ -39,7 +40,8 @@
                 <!-- Foto Hewan Kurban Anda -->
                 <div class="col">
                   <input type="radio" class="btn-check" name="options-outlined" id="foto_hewan" value="foto_hewan" v-model="proses" autocomplete="off" checked>
-                  <label class="btn btn-danger font-weight-bold text-light px-4" for="foto_hewan">
+                  <!-- <label class="btn btn-danger font-weight-bold text-light px-4" for="foto_hewan"> -->
+                  <label class="btn btn-warning font-weight-bold text-light px-4" for="foto_hewan">
                     <span class="d-flex justify-content-center">Foto Hewan</span> 
                     <span class="d-flex justify-content-center">Kurban Anda</span>
                   </label>
