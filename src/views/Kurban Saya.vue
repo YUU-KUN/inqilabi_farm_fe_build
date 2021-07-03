@@ -33,7 +33,7 @@
                       <template #head(proses_kurban)="data">
                         <h4>{{ data.label}}</h4>
                       </template>
-                      <template #head(status)="data">
+                      <template #head(sertifikat)="data">
                         <h4>{{ data.label}}</h4>
                       </template>
                       <template #head(aksi)="data">
@@ -60,13 +60,66 @@
                         <h5 class="font-weight-normal" v-if="data.item.proses == 'inqilabi_farm'">Inqilabi Farm</h5>
                         <h5 class="font-weight-normal" v-else>Dikirim</h5>
                       </template>
-                      <template #cell(status)="data">
-                          <span v-if="data.item.report">
+                      <template #cell(sertifikat)="data">
+                        <a href="#" @click="generateSertfikat(data.item.id)" data-toggle="modal" :data-target="'#modalSertifikat'+data.item.id">
+                          <img src="../../public/img/ant-design_download-outlined.svg" alt="download sertifikat button">
+                        </a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" :id="'modalSertifikat'+data.item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                {{data.item.id}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <vue-html2pdf
+                          :filename="'Sertifikat Kurban '+ data.item.created_at"
+                          :show-layout="false"
+                          :float-layout="true"
+                          :enable-download="true"
+                          :preview-modal="false"
+                          :paginate-elements-by-height="1400"
+                          :pdf-quality="2"
+                          :manual-pagination="true"
+                          pdf-format="a4"
+                          pdf-orientation="landscape"
+                          pdf-content-width="3508px"
+                          @hasStartedGeneration="hasStartedGeneration()"
+                          @hasGenerated="hasGenerated($event)"
+                          htmlToPdfOptions: options
+
+                          ref="sertifikat"
+                          >
+                            <section slot="pdf-content" class="px-0">
+                              <p style="z-index: 3; position: absolute; top: 340px; left: 220px"><b>{{returnID(data.item.id)}}/QB/IC/{{returnMonthRomawi(data.item.created_at)}}/{{returnYear(data.item.created_at)}}</b></p>
+                              <h1 style="z-index: 2; position: absolute; top: 390px; left: 140px"><b>{{data.item.nama}}</b></h1>
+                              <h1 style="z-index: 2; position: absolute; top: 480px; left: 140px"><b>{{data.item.total | rupiah}}</b></h1>
+                              <p style="z-index: 3; position: absolute; top: 515px; left: 635px" class="text-white font-weight-bold">Malang, {{data.item.created_at | formatDate}}</p>
+                              <img src="../../public/img/SERTIFIKAT.png" width="90%" class="mx-5" alt="Sertifikat Kurban">
+                                <!-- PDF Content Here -->
+                            </section>
+                        </vue-html2pdf>
+                        <!-- <button @click="generateSertifikat(data.item.id)" class="btn btn-success">
+                        </button> -->
+                          <!-- <span v-if="data.item.report">
                             <h5 class="font-weight-normal" v-if="data.item.report.status == 'Foto Hewan'">Foto Hewan</h5>
-                            <!-- <h5 class="font-weight-normal" v-else-if="data.item.report.status == 'Foto Hewan'">Foto Hewan</h5> -->
                             <h5 class="font-weight-normal" v-else>-</h5>
                           </span>
-                          <span v-else>-</span>
+                          <span v-else>-</span> -->
                       </template>
                       <template #cell(aksi)="data">
                             <button @click="detailReport(data.item.id)" class="btn btn-danger text-light font-weight-bold">Detail</button>
@@ -82,13 +135,19 @@
                   ></b-pagination>
                 </div>
           </div>
+
         </div>
       </div>
   </div>
 </template>
 
 <script>
+import VueHtml2pdf from 'vue-html2pdf'
+import moment from 'moment'
 export default {
+  components: {
+      VueHtml2pdf
+  },
   data() {
     return {
       reports: [],
@@ -102,9 +161,12 @@ export default {
         {key: 'tipe', label: 'Tipe'},
         {key: 'jumlah', label: 'Jumlah'},
         {key: 'proses_kurban', label: 'Proses Kurban'},
-        {key: 'status', label: 'Status'},
+        {key: 'sertifikat', label: 'Sertifikat'},
         {key: 'aksi', label: 'Aksi'},
       ],
+      monthRomawi: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII']
+      // filename="Sertifikat Kurban"
+      // filename = filename + data.item.created_at | formatDate
     };
   },
   methods: {
@@ -117,6 +179,18 @@ export default {
     },
     detailReport(id) {
         this.$router.push({name: 'Report', params: {id_pembayaran: id}})
+    },
+    generateSertfikat(id) {
+      this.$refs.sertifikat.generatePdf()
+    },
+    returnYear(date) {
+      return moment(date).year()
+    },
+    returnMonthRomawi(date) {
+      return this.monthRomawi[moment(date).month()-1]
+    },
+    returnID(id){
+      return 183 + id
     }
   },
   computed: {
