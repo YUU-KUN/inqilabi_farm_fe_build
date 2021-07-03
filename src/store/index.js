@@ -35,7 +35,7 @@ export default new Vuex.Store({
 	        return new Promise((resolve, reject) => {
 	            commit('auth_request')
 	            // axios({url: 'login_user', data: user, method: 'POST' })
-				axios.post('/login_user', user)
+				axios.post('/login', user)
 	            .then(response => {
 	                const token = response.data.user.access_token
 	                localStorage.setItem('Authorization', token)
@@ -47,6 +47,8 @@ export default new Vuex.Store({
 					.then(response => {
 						//simpan detail login ke state
 						commit('userDetail', response.data.user)
+					}).catch(error => {
+						console.log(error.response)
 					})
 	                resolve(response)
 	            })
