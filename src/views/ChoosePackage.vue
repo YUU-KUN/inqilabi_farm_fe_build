@@ -22,7 +22,10 @@
                     <h5>Mulai dari</h5>
                     <h3><b>Rp 1.850.000</b></h3>
                     <!-- <p><button>Kurban Sekarang</button></p> -->
-                    <p><b-button pill variant="light">Kurban Sekarang</b-button></p>
+                    <!-- <p><b-button pill variant="light">Kurban Sekarang</b-button></p> -->
+                    <router-link to="choosePackage/kambing_betina">
+                        <b-button pill variant="light">Kurban Sekarang</b-button>
+                    </router-link>
                 </div>
 
                 <!-- Kambing / Domba Jantan -->
@@ -30,7 +33,7 @@
                     <h3 style="margin: 30px"><b>Kambing / Domba Jantan</b></h3>
                     <img
                         src="../../public/img/domba_jantan.png"
-                        alt="Domba Betina"
+                        alt="Domba Jantan"
                         style=""
                     />
                     <br />
