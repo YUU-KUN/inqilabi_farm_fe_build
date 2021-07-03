@@ -157,24 +157,22 @@
                         <!-- <button v-if="data.item.bukti_transfer" data-toggle="modal" :data-target="'#modalBuktiTransfer'+data.index" class="btn btn-primary btn-sm font-weight-bold">Lihat</button> -->
                         <a v-if="data.item.bukti_transfer" data-fancybox :href="baseurl + data.item.bukti_transfer" class="btn btn-primary btn-sm font-weight-bold">Lihat</a>
                         <!-- <img v-if="data.item.bukti_transfer" :src="baseurl + data.item.bukti_transfer" alt="Bukti Pembayaran" class="img-thumbnail"> -->
-                        <button v-else data-toggle="modal" :data-target="'#modalUploadBukti'+data.index" class="btn btn-primary btn-sm font-weight-bold">Upload Bukti Transfer</button>
+                        <!-- <button v-else data-toggle="modal" :data-target="'#modalUploadBukti'+data.index" class="btn btn-primary btn-sm font-weight-bold">Upload Bukti Transfer</button> -->
+                        <span v-else>-</span>
 
-                        <div class="modal fade" :id="'modalBuktiTransfer'+data.index" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <!-- <div class="modal fade" :id="'modalBuktiTransfer'+data.index" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle">Lihat Bukti Pembayaran</h5>
                               </div>
-                              <!-- <div class="modal-body"> -->
-                                <!-- <img v-if="data.item.bukti_transfer" :src="baseurl + data.item.bukti_transfer" alt="Bukti Pembayaran" class="img-fluid" width="1000px" > -->
-                                        <img src="../../public/img/domba_jantan.png" alt="" width="100%">
-                              <!-- </div> -->
+                              <img src="../../public/img/domba_jantan.png" alt="" width="100%">
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Tutup</button>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
 
                         <div class="modal fade" :id="'modalUploadBukti'+data.index" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
